@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Trash Scan</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+  <div class="app-shell">
+    <!-- HEADER -->
+    <header class="app-header">
+      <div class="brand">
+        <img src="/static/img/logo.png" alt="Trash Scan Logo" class="brand-logo-inline">
+
+        <div class="brand-text">
+          <h1>Trash Scan</h1>
+          <p>Nhận dạng rác & gợi ý tái chế thông minh</p>
+        </div>
+      </div>
+
+      <div class="header-badge">
+        <span>Đồ án tốt nghiệp</span>
+      </div>
+    </header>
+
+
+    <!-- MAIN GRID -->
+    <main class="main-grid">
+      <!-- LEFT COLUMN: Upload + Camera -->
+      <div class="col-left">
+        <div class="nav-tabs">
+          <button class="tab-btn active" onclick="switchTab('upload-panel')">Upload ảnh</button>
+          <button class="tab-btn" onclick="switchTab('camera-panel')">Camera</button>
+        </div>
+
+        <section id="upload-panel" class="panel">
+          <h2>Upload ảnh để nhận dạng rác</h2>
+          <p class="panel-desc">
+            Chọn một bức ảnh chứa rác thải để hệ thống phân tích và gợi ý cách xử lý.
+          </p>
+          <div class="upload-row">
+            <label class="btn btn-secondary">
+              📁 Chọn tệp
+              <input type="file" id="upload-input" accept="image/*" hidden>
+            </label>
+            <label class="btn btn-secondary">
+              📷 Chụp ảnh
+              <input type="file" id="camera-input" accept="image/*" capture="environment" hidden>
+            </label>
+            <span id="file-name-display" style="margin-left: 10px; font-style: italic; color: #555;"></span>
+            <button id="upload-btn" class="btn btn-primary">Nhận dạng</button>
+          </div>
+          <div id="upload-result" class="result-box"></div>
+        </section>
+
+        <section id="camera-panel" class="panel hidden">
+          <h2>Camera real-time</h2>
+          <p class="panel-desc">
+            Bật camera để chụp nhanh và nhận dạng trực tiếp từ môi trường xung quanh.
+          </p>
+          <div class="camera-wrapper">
+            <video id="video" autoplay playsinline></video>
+            <canvas id="canvas" style="display:none;"></canvas>
+          </div>
+          <div class="button-row">
+            <button id="start-cam" class="btn btn-secondary">Bật camera</button>
+            <button id="switch-cam" class="btn btn-secondary hidden">Đổi camera</button>
+            <button id="save-cam" class="btn btn-primary hidden">📸 Lưu ảnh</button>
+          </div>
+          <div id="cam-result" class="result-box"></div>
+        </section>
+      </div>
+
+      <!-- RIGHT COLUMN: History + Map + Chatbot -->
+      <div class="col-right">
+        <section class="panel">
+          <h2>Lịch sử nhận dạng</h2>
+          <p class="panel-desc">
+            Các lần nhận dạng gần đây nhất được lưu lại để bạn tiện theo dõi.
+          </p>
+          <div class="history-header">
+            <button id="load-history" class="btn btn-outline">Tải lịch sử</button>
+          </div>
+          <ul id="history-list" class="history-list"></ul>
+        </section>
+
+        <section class="panel">
+          <h2>Điểm thu gom tái chế gần bạn</h2>
+          <p id="recycle-info" class="panel-desc">
+            Sau khi nhận dạng rác tái chế, hệ thống sẽ gợi ý điểm thu gom phù hợp gần vị trí của bạn.
+          </p>
+          <div class="map-search-box">
+            <input type="text" id="place-search" placeholder="🔍 Tìm kiếm: điểm thu gom, bãi rác, tái chế..." />
+            <button id="search-place" class="btn btn-primary">Tìm</button>
+          </div>
+          <div id="map" class="map-box"></div>
+        </section>
+      </div>
+      <!--
+      <section class="panel panel-full">
+        <h2>Chatbot – Hỏi về rác thải & tái chế</h2>
+        <p class="panel-desc">
+          Đặt câu hỏi về phân loại rác, cách xử lý rác nguy hại, hoặc mẹo sống xanh hơn.
+        </p>
+        <div id="chat-window" class="chat-window"></div>
+        <div class="chat-input-row">
+          <input type="text" id="chat-input" placeholder="Nhập câu hỏi của bạn..." />
+          <button id="chat-send" class="btn btn-primary">Gửi</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span>Trash Scan · YOLO11 · Hướng tới môi trường xanh 🌱</span>
+    </footer>
+  </div>
+-->
+
+
+
+      <!-- CHAT WIDGET NỔI GÓC TRÁI -->
+      <div class="chat-widget">
+        <!-- Nút bubble ở góc trái -->
+        <button class="chat-launcher" id="chat-launcher">
+          💬
+        </button>
+
+        <!-- Cửa sổ chat -->
+        <div class="chat-panel" id="chat-panel">
+          <div class="chat-panel-header">
+            <div class="chat-panel-title">
+              <div class="chat-avatar">
+                TS
+              </div>
+              <div>
+                <div class="chat-title-main">Trash Scan Assistant</div>
+                <div class="chat-title-sub">Trợ lý rác thải & tái chế</div>
+              </div>
+            </div>
+            <button class="chat-close-btn" id="chat-close">×</button>
+          </div>
+
+          <div id="chat-window" class="chat-window"></div>
+
+          <div class="chat-input-row">
+            <input type="text" id="chat-input" placeholder="Nhập câu hỏi của bạn..." />
+            <button id="chat-send" class="btn btn-primary">Gửi</button>
+          </div>
+        </div>
+      </div>
+
+
+      <script src="/static/js/main.js"></script>
+      <!-- Nếu dùng Google Maps API: thay YOUR_API_KEY bằng key của bạn -->
+      <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4gXOT-eQn2lSsIzJDf4emc-fpI-_2maE&libraries=places&callback=initMap">
+        </script>
+</body>
+
+</html>
